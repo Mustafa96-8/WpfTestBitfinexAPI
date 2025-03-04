@@ -3,10 +3,79 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:WpfTestBitfinexAPI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="720" Width="1280">
     <Grid>
+        <TextBlock Name="TBlokPare" Text="Валютная пара:" FontSize="11" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,5,0,0"/>
+        <TextBox Name="TBPare" Text="{Binding Mode = TwoWay, Path=Pare}" Height="20" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,0,0"/>
 
+        <TextBlock Name="TBlokCount" Text="Количество:" FontSize="11" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,45,0,0"/>
+        <TextBox Name="TBCount" Text="{Binding Mode = TwoWay, Path=CountOfItemsInRequest}" Height="20" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,60,0,0"/>
+        <Button Content="Get Candles" 
+                HorizontalAlignment="Left" 
+                Height="20" 
+                Margin="10,90,0,0" 
+                VerticalAlignment="Top" 
+                Width="100"
+                Command="{Binding GetCandle}"/>        
+        <Button Content="Get Trades" 
+                HorizontalAlignment="Left" 
+                Height="20" 
+                Margin="10,120,0,0" 
+                VerticalAlignment="Top" 
+                Width="100"
+                Command="{Binding GetTrade}"/>
+        <Button Content="Subscribe Candle" 
+                HorizontalAlignment="Left" 
+                Height="20" 
+                Margin="10,150,0,0" 
+                VerticalAlignment="Top" 
+                Width="100"
+                Command="{Binding SubscribeCandle}"/>
+        <Button Content="Subscribe Trade" 
+                HorizontalAlignment="Left" 
+                Height="20" 
+                Margin="10,180,0,0" 
+                VerticalAlignment="Top" 
+                Width="100"
+                Command="{Binding SubscribeTrade}"/>
+        <Button Content="Unsubscribe Candle" 
+                HorizontalAlignment="Left" 
+                Height="20" 
+                Margin="10,210,0,0" 
+                VerticalAlignment="Top" 
+                Width="100"
+                Command="{Binding UnsubscribeCandle}"/>
+        <Button Content="Unsubscribe Trade" 
+                HorizontalAlignment="Left" 
+                Height="20" 
+                Margin="10,240,0,0" 
+                VerticalAlignment="Top" 
+                Width="100"
+                Command="{Binding UnsubscribeTrade}"/>
+        <TextBlock Name="TDateTimeFrom" Text="Дата и время от:" FontSize="11" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,270,0,0"/>
+        <TextBox Name="TBDateTimeFrom" Text="{Binding Mode = TwoWay, Path=DateTimeFrom}" Height="20" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,290,0,0"/>
+
+        <TextBlock Name="TDateTimeTo" Text="Дата и время до:" FontSize="11" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,310,0,0"/>
+        <TextBox Name="TBDateTimeTo" Text="{Binding Mode = TwoWay, Path=DateTimeTo}" Height="20" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,330,0,0"/>
+
+        <Grid Height="240" HorizontalAlignment="Left" Margin="120,20,0,0" VerticalAlignment="Top" Width="480">
+            <TextBlock Height="20" VerticalAlignment="Top" Text="Список свечей полученный по REST запросу"/>
+            <DataGrid Margin="0,20,0,0" ItemsSource="{Binding Path=candleRESTList}"/>
+        </Grid>
+        <Grid Height="240" HorizontalAlignment="Left" Margin="620,20,0,0" VerticalAlignment="Top" Width="480">
+            <TextBlock Height="20" VerticalAlignment="Top" Text="Список свечей полученный по вебсокету"/>
+            <DataGrid Margin="0,20,0,0" ItemsSource="{Binding Path=candleWSList}"/>
+        </Grid>
+        <Grid Height="240" HorizontalAlignment="Left" Margin="120,280,0,0" VerticalAlignment="Top" Width="480">
+            <TextBlock Height="20" VerticalAlignment="Top" Text="Список контрактов полученный по REST запросу"/>
+            <DataGrid Margin="0,20,0,0" ItemsSource="{Binding Path=tradeRESTList}"/>
+        </Grid>
+        <Grid Height="240" HorizontalAlignment="Left" Margin="620,280,0,0" VerticalAlignment="Top" Width="480">
+            <TextBlock Height="20" VerticalAlignment="Top" Text="Список контрактов полученный по вебсокету"/>
+            <DataGrid Margin="0,20,0,0" Height="200" ItemsSource="{Binding Path=tradeWSList}"/>
+        </Grid>
     </Grid>
 </Window>
