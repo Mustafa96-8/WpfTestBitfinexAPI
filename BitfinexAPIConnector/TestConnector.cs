@@ -72,15 +72,15 @@ public class TestConnector : ITestConnector
     {
         var response = await RestRequestGet($"https://api-pub.bitfinex.com/v2/trades/{pair}/hist?limit={maxCount}&sort=-1");
         var numberFormat = new NumberFormatInfo() { NumberDecimalSeparator = "." };
-        var trades = JsonSerializer.Deserialize<List<List<object>>>(response.Content)
+        var trades = JsonSerializer.Deserialize<List<List<decimal>>>(response.Content)
             .Select(c => new Trade
             {
                 Pair = pair,
                 Id = c[0].ToString(),
-                Time = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(c[1].ToString())),
-                Amount = Math.Abs(DecimalParseFromResponse(c[2])),
-                Side = DecimalParseFromResponse(c[2]) > 0 ? "buy" : "sell",
-                Price = DecimalParseFromResponse(c[3]),
+                Time = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(c[1])),
+                Amount = Math.Abs(c[2]),
+                Side =c[2] > 0 ? "buy" : "sell",
+                Price = c[3],
             })
             .ToList();
         return trades;
