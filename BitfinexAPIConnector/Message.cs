@@ -1,12 +1,9 @@
 ﻿namespace BitfinexAPIConnector;
-public partial class TestConnector
+
+public class Message
 {
-    internal class Message
-    {
-        public string @event { get; set; }
-        public string channel { get; set; }
-        public string key { get; set; }
+    public string @event { get; set; }
+    public string channel { get; set; }
+    public string key { get; set; }
 
-    }
 }
-

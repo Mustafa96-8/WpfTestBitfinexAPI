@@ -19,12 +19,13 @@ public class TestConnector : ITestConnector
     private ClientWebSocket ws;
     private Dictionary<int, string> candlesChatId = new();
     private Dictionary<int, string> tradesChatId = new();
-    private CancellationTokenSource cts = new CancellationTokenSource();
+    private CancellationTokenSource cts;
 
-    private TestConnector()
+    public TestConnector()
     {
         Uri uri = new Uri("wss://api-pub.bitfinex.com/ws/2");
         ws = new ClientWebSocket();
+        cts = new CancellationTokenSource();
         ws.ConnectAsync(uri, cts.Token);
         var thread1 = new Thread(OnListen);
         thread1.Start();
