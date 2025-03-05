@@ -9,7 +9,7 @@
         Title="MainWindow" Height="720" Width="1280">
     <Grid>
         <TextBlock Name="TBlokPare" Text="Валютная пара:" FontSize="11" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,5,0,0"/>
-        <TextBox Name="TBPare" Text="{Binding Mode = TwoWay, Path=Pare}" Height="20" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,0,0"/>
+        <TextBox Name="TBPare" Text="{Binding Mode = TwoWay, Path=Pair}" Height="20" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,0,0"/>
 
         <TextBlock Name="TBlokCount" Text="Количество:" FontSize="11" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,45,0,0"/>
         <TextBox Name="TBCount" Text="{Binding Mode = TwoWay, Path=CountOfItemsInRequest}" Height="20" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,60,0,0"/>
